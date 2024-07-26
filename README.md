@@ -45,13 +45,19 @@ jobs:
 
 ### Check linting or formatting
 
-If you have a linter or formatter in your build process, you can use this workflow to create a PR if the linter or formatter finds (auto-fixable) issues:
+If you have a linter or formatter in your build process, you can use this workflow to create a PR if the linter or formatter finds (auto-fixable) issues.
+
+> [!IMPORTANT]
+> The `pull-requests: write` permission is required to create a PR.
 
 ```yml
 name: Check linting
 
 on:
   - pull_request
+
+permissions:
+  pull-requests: write
 
 jobs:
   check-linting:
@@ -78,7 +84,7 @@ jobs:
 
 | Name                | Required | Default value                         | Description                                                                        |
 | ------------------- | -------- | ------------------------------------- | ---------------------------------------------------------------------------------- |
-| `github-token`      | false    | `github.token`                | GITHUB_TOKEN or a repo scoped PAT.                                                 |
+| `github-token`      | false    | `github.token`                        | GITHUB_TOKEN or a repo scoped PAT.                                                 |
 | `working-directory` | false    | `.`                                   | The directory where the library.json file is located, relative to the Git project. |
 | `create-pr`         | false    | `false`                               | If a PR should be created if the diff is not empty.                                |
 | `pr-title`          | false    | `check-diff-action found differences` | The title of the PR.                                                               |
