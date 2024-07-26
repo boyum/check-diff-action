@@ -48,7 +48,7 @@ jobs:
 If you have a linter or formatter in your build process, you can use this workflow to create a PR if the linter or formatter finds (auto-fixable) issues.
 
 > [!IMPORTANT]
-> The `pull-requests: write` permission is required to create a PR.
+> The `contents: read` and `pull-requests: write` permissions are required to create a PR.
 
 ```yml
 name: Check linting
@@ -57,6 +57,7 @@ on:
   - pull_request
 
 permissions:
+  contents: read
   pull-requests: write
 
 jobs:
