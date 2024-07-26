@@ -78,7 +78,7 @@ jobs:
 
 | Name                | Required | Default value                         | Description                                                                        |
 | ------------------- | -------- | ------------------------------------- | ---------------------------------------------------------------------------------- |
-| `github-token`      | false    | `secrets.GITHUB_TOKEN`                | GITHUB_TOKEN or a repo scoped PAT.                                                 |
+| `github-token`      | false    | `github.token`                | GITHUB_TOKEN or a repo scoped PAT.                                                 |
 | `working-directory` | false    | `.`                                   | The directory where the library.json file is located, relative to the Git project. |
 | `create-pr`         | false    | `false`                               | If a PR should be created if the diff is not empty.                                |
 | `pr-title`          | false    | `check-diff-action found differences` | The title of the PR.                                                               |
