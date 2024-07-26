@@ -31,6 +31,13 @@ runs:
   using: composite
 
   steps:
+    - name: Log inputs
+      shell: bash
+      run: |
+        echo "working-directory: ${{ inputs.working-directory }}"
+        echo "create-pr: ${{ inputs.create-pr }}"
+        echo "pr-title: ${{ inputs.pr-title }}"
+
     - name: Compare the expected and actual working directories
       shell: bash
       run: |
