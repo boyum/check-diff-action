@@ -49,7 +49,7 @@ runs:
       id: diff
 
     - name: Create Pull Request
-      if: ${{ failure() && steps.diff.conclusion == 'failure' }}
+      if: ${{ failure() && steps.diff.conclusion == 'failure' && inputs.create-pr == 'true' }}
       uses: peter-evans/create-pull-request@v6
       with:
         title: ${{ inputs.pr-title }}

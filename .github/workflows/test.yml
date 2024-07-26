@@ -25,5 +25,5 @@ jobs:
         with:
           working-directory: fixtures/${{ matrix.fixtures }}
           create-pr: true
-          pr-title: "Update fixture ${matrix.fixtures}"
+          pr-title: "Update fixture ${{ matrix.fixtures }}"
 
