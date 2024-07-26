@@ -30,4 +30,5 @@ jobs:
           working-directory: fixtures/${{ matrix.fixtures }}
           create-pr: true
           pr-title: "Update fixture ${{ matrix.fixtures }}"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
