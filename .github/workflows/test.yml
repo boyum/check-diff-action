@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        fixtures: [test1]
+
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup fixture
+        run: |
+          npm run setup-fixture
+        working-directory: fixtures/${{ matrix.fixtures }}
+
+      - name: Test fixture
+        uses: ./
+        with:
+          working-directory: fixtures/${{ matrix.fixtures }}
+          create-pr: true
+          pr-title: "Update fixture ${matrix.fixtures}"
+

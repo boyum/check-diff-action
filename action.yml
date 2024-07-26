@@ -1,0 +1,51 @@
+name: Check diff
+description: Action that checks if there are any changes in the working directory, and optionally creates a pull request with the changes.
+author: boyum
+
+branding:
+  icon: package
+  color: green
+
+inputs:
+  github-token:
+    description: GitHub token
+    required: true
+    default: ${{ secrets.GITHUB_TOKEN }}
+
+  working-directory:
+    required: false
+    description: The working directory to run the command in
+    default: "."
+
+  create-pr:
+    required: false
+    description: Whether to create a pull request with the changes
+    default: "false"
+
+  pr-title:
+    required: false
+    description: The title of the pull request. Only used if create-pr is true
+    default: check-diff-action found differences
+
+runs:
+  using: composite
+
+  steps:
+    - name: Compare the expected and actual working directories
+      shell: bash
+      run: |
+        if [ "$(git diff --ignore-space-at-eol ${{ inputs.working-directory }} | wc -l)" -gt "0" ]; then
+          echo "Detected uncommitted changes. See status below:"
+          git diff
+          exit 1
+        fi
+      id: diff
+
+    - name: Create Pull Request
+      if: ${{ failure() && steps.diff.conclusion == 'failure' && inputs.create-pr == 'true' }}
+      uses: peter-evans/create-pull-request@v6
+      with:
+        title: ${{ inputs.pr-title }}
+        commit-message: ${{ inputs.pr-title }}
+        delete-branch: true
+        base: ${{ github.head_ref	}}

@@ -1,0 +1,12 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "setup-fixture": "npm install && npm run build",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^5.3.5"
+  }
+}
