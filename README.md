@@ -85,6 +85,12 @@ jobs:
 
 ## Development
 
+### Validating PRs
+
+To test this action, a workflow is set up which will build and verify the test fixtures.
+Each fixture will crash the build and create a PR _if everything's ok_.
+This is counter-intuitive, but it's the only way to test the action in a real-world scenario (which I can think of).
+
 ### Releasing new versions
 
 #### Create release
